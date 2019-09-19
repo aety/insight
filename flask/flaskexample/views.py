@@ -35,7 +35,7 @@ def birth_page():
     births = ""
     print(query_results[:10])
     for i in range(0,10):
-        births += query_results.iloc[i]['birth_month']
+        births += query_results.iloc[i]['testtest']
         births += "<br>"
     return births
 
