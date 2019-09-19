@@ -25,15 +25,40 @@ def index():
 
 @app.route('/db')
 def birth_page():
-    sql_query = """                                                                       
-                SELECT * FROM auber_pm10_table WHERE ds>'2019-12-30 00:00:00';
+    sql_query = """                                                             
+                SELECT * FROM auber_pm10_table WHERE ds>'2019-12-30 00:00:00';                                                                              
                 """
-    #sql_query = """                                                                       
-    #            SELECT * FROM birth_data_table WHERE delivery_method='Cesarean';          
-    #            """
     query_results = pd.read_sql_query(sql_query,con)
     births = ""
+    print(query_results[:10])
     for i in range(0,10):
-        births += str(query_results.iloc[i]['trend'])
+        births += query_results.iloc[i]['birth_month']
         births += "<br>"
     return births
+
+@app.route('/db_fancy')
+def cesareans_page_fancy():
+    sql_query = """
+               SELECT * FROM auber_pm10_table WHERE ds>'2019-12-30 00:00:00';                                                   
+                """
+    query_results=pd.read_sql_query(sql_query,con)
+    births = []
+    for i in range(0,query_results.shape[0]):
+        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'], birth_month=str(query_results.iloc[i]['trend'])))
+    return render_template('cesareans.html',births=births)
+
+
+
+
+
+
+
+
+
+#@app.route('/input')
+#def cesareans_input():
+#    return render_template("input.html")
+
+#@app.route('/output')
+#def cesareans_output():
+#    return render_template("output.html")
