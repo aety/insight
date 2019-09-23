@@ -26,14 +26,14 @@ def index():
 @app.route('/db')
 def birth_page():
     sql_query = """                                                                       
-                SELECT * FROM auber_pm10_table WHERE ds>'2019-12-30 00:00:00';
+                SELECT * FROM auber_pm10_table WHERE ds>'2019-01-30 00:00:00';
                 """
     #sql_query = """                                                                       
     #            SELECT * FROM birth_data_table WHERE delivery_method='Cesarean';          
     #            """
     query_results = pd.read_sql_query(sql_query,con)
     births = ""
-    for i in range(0,10):
+    for i in range(0,20):
         births += str(query_results.iloc[i]['trend'])
         births += "<br>"
     return births
