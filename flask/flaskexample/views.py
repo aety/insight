@@ -1,5 +1,7 @@
 from a_Model import ModelIt
 
+from datetime import datetime
+from datetime import timedelta  
 from flask import request
 from flask import render_template
 from flaskexample import app
@@ -69,9 +71,9 @@ def cesareans_input():
 def cesareans_output():
     #pull 'birth_month' from input field and store it
     patient = request.args.get('birth_month')
-    #just select the Cesareans from the birth dtabase for the month that the user inputs
-    #query = "SELECT index, attendant, birth_month FROM birth_data_table WHERE delivery_method='Cesarean' AND birth_month='%s'" % patient
-    query = "SELECT * FROM auber_pm10_table WHERE ds>'2019-01-31 00:00:00' AND ds<'2019-02-01 00:00:00';"
+    time1 = datetime.strptime(patient,'%Y-%m-%d')
+    time2 = time1 + timedelta(days=1)
+    query = "SELECT * FROM auber_pm10_table WHERE ds BETWEEN '%s' AND '%s'" % (time1, time2)
     print(query)
     query_results=pd.read_sql_query(query,con)
     print(query_results)
