@@ -71,6 +71,7 @@ def cesareans_input():
 def cesareans_output():
     #pull 'birth_month' from input field and store it
     patient = request.args.get('birth_month')
+    travelhour = request.args.get('hour_input')
     time1 = datetime.strptime(patient,'%Y-%m-%d')
     time2 = time1 + timedelta(days=1)
     query = "SELECT * FROM frankl_pm10_table WHERE ds >= '%s' AND ds < '%s'" % (time1, time2)
@@ -79,7 +80,7 @@ def cesareans_output():
     print(query_results)
     births = []
     for i in range(0,query_results.shape[0]):
-        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'], birth_month=query_results.iloc[i]['trend']))
+        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'], birth_month=query_results.iloc[i]['yhat']))
     the_result = ModelIt(patient,births)
-    print(births)
-    return render_template("output.html", births = births, the_result = the_result) ### here are the output variables
+    print(travelhour)
+    return render_template("output.html", births = births, the_result = the_result, travelhour = travelhour) ### here are the output variables

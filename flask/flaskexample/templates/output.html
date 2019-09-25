@@ -90,37 +90,41 @@
             
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Time', 'PM10'],
-                    ['12 am',  {{births[0].birth_month}}],
-                    ['1 am',  {{births[1].birth_month}}],
-                    ['2 am',  {{births[2].birth_month}}],
-                    ['3 am',  {{births[3].birth_month}}],                    
-                    ['4 am',  {{births[4].birth_month}}],                    
-                    ['5 am',  {{births[5].birth_month}}],                    
-                    ['6 am',  {{births[6].birth_month}}],                    
-                    ['7 am',  {{births[7].birth_month}}],                    
-                    ['8 am',  {{births[8].birth_month}}],                    
-                    ['9 am',  {{births[9].birth_month}}],                    
-                    ['10 am',  {{births[10].birth_month}}],                    
-                    ['11 am',  {{births[11].birth_month}}],                    
-                    ['12 pm',  {{births[12].birth_month}}],                    
-                    ['1 pm',  {{births[13].birth_month}}],                    
-                    ['2 pm',  {{births[14].birth_month}}],                    
-                    ['3 pm',  {{births[15].birth_month}}],                    
-                    ['4 pm',  {{births[16].birth_month}}],                    
-                    ['5 pm',  {{births[17].birth_month}}],                    
-                    ['6 pm',  {{births[18].birth_month}}],                    
-                    ['7 pm',  {{births[19].birth_month}}],                    
-                    ['8 pm',  {{births[20].birth_month}}],                    
-                    ['9 pm',  {{births[21].birth_month}}],                    
-                    ['10 pm',  {{births[22].birth_month}}],                    
-                    ['11 pm',  {{births[23].birth_month}}],                   
+                    ['Time', 'PM10','Good','Moderate','Sensitive','Unhealthy'],
+                    ['12 am',  {{births[0].birth_month}},54,154,254,354],
+                    ['1 am',  {{births[1].birth_month}},54,154,254,354],
+                    ['2 am',  {{births[2].birth_month}},54,154,254,354],
+                    ['3 am',  {{births[3].birth_month}},54,154,254,354],                    
+                    ['4 am',  {{births[4].birth_month}},54,154,254,354],                    
+                    ['5 am',  {{births[5].birth_month}},54,154,254,354],                    
+                    ['6 am',  {{births[6].birth_month}},54,154,254,354],                    
+                    ['7 am',  {{births[7].birth_month}},54,154,254,354],                    
+                    ['8 am',  {{births[8].birth_month}},54,154,254,354],                    
+                    ['9 am',  {{births[9].birth_month}},54,154,254,354],                    
+                    ['10 am',  {{births[10].birth_month}},54,154,254,354],                    
+                    ['11 am',  {{births[11].birth_month}},54,154,254,354],                    
+                    ['12 pm',  {{births[12].birth_month}},54,154,254,354],                    
+                    ['1 pm',  {{births[13].birth_month}},54,154,254,354],                    
+                    ['2 pm',  {{births[14].birth_month}},54,154,254,354],                    
+                    ['3 pm',  {{births[15].birth_month}},54,154,254,354],                    
+                    ['4 pm',  {{births[16].birth_month}},54,154,254,354],                    
+                    ['5 pm',  {{births[17].birth_month}},54,154,254,354],                    
+                    ['6 pm',  {{births[18].birth_month}},54,154,254,354],                    
+                    ['7 pm',  {{births[19].birth_month}},54,154,254,354],                    
+                    ['8 pm',  {{births[20].birth_month}},54,154,254,354],                    
+                    ['9 pm',  {{births[21].birth_month}},54,154,254,354],                    
+                    ['10 pm',  {{births[22].birth_month}},54,154,254,354],                    
+                    ['11 pm',  {{births[23].birth_month}},54,154,254,354],                   
                 ]);
                 
                 var options = {
-                    title: 'Company Performance',
-                    curveType: 'function',
-                    legend: { position: 'bottom' }               
+                    title: 'PM10 prediction (\u03BCg/m3)',
+                    curveType: 'none',
+                    legend: { position: 'bottom'},        
+                    colors: ['black', 'green', 'yellow', 'orange', 'red'],
+                    lineWidth: 3,
+                    seriesType: 'line',
+                    series: {0: {type: 'area'}}
                 };
                 
                 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));                
@@ -230,41 +234,47 @@
                 <form  action="/output" method="GET">
                     
                     <div class="form-group">
-                        <label for="birth_month">Date:</label>
-                        <input type="text" id="birth_month" name='birth_month' placeholder="2019-09-26", value="2019-09-26">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Time: </label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option value="00">12 am</option>
-                            <option value="01">1 am</option>
-                            <option value="02">2 am</option>
-                            <option value="03">3 am</option>
-                            <option value="04">4 am</option>
-                            <option value="05">5 am</option>
-                            <option value="06">6 am</option>
-                            <option value="07">7 am</option>
-                            <option value="08">8 am</option>
-                            <option value="09">9 am</option>
-                            <option value="10">10 am</option>
-                            <option value="11">11 am</option>
-                            <option value="12">12 pm</option>
-                            <option value="13">1 pm</option>
-                            <option value="14">2 pm</option>
-                            <option value="15">3 pm</option>
-                            <option value="16">4 pm</option>
-                            <option value="17">5 pm</option>
-                            <option value="18">6 pm</option>
-                            <option value="19">7 pm</option>
-                            <option value="20">8 pm</option>
-                            <option value="21">9 pm</option>
-                            <option value="22">10 pm</option>
-                            <option value="23">11 pm</option>
-                        </select>
-                    </div>
-                    
-                    <div>
+            <label for="birth_month">Date:</label>
+            <input type="text" id="birth_month" name='birth_month' placeholder="2019-09-26", value="2019-09-26">
+          <!--</div>
+          
+          <div class="form-group">-->
+              <!--
+            <label for="hour_input">Time: </label>
+            <select class="form-control" id="hour_input" name='hour_input', placeholder="12", value="12">
+                <option value=00>12 am</option>
+                <option value="01">1 am</option>
+                <option value="02">2 am</option>
+                <option value="03">3 am</option>
+                <option value="04">4 am</option>
+                <option value="05">5 am</option>
+                <option value="06">6 am</option>
+                <option value="07">7 am</option>
+                <option value="08">8 am</option>
+                <option value="09">9 am</option>
+                <option value="10">10 am</option>
+                <option value="11">11 am</option>
+                <option value="12">12 pm</option>
+                <option value="13">1 pm</option>
+                <option value="14">2 pm</option>
+                <option value="15">3 pm</option>
+                <option value="16">4 pm</option>
+                <option value="17">5 pm</option>
+                <option value="18">6 pm</option>
+                <option value="19">7 pm</option>
+                <option value="20">8 pm</option>
+                <option value="21">9 pm</option>
+                <option value="22">10 pm</option>
+                <option value="23">11 pm</option>
+              </select>
+-->
+              
+              <label for="hour_input">Hour:</label>
+              <input type="text" id="hour_input" name='hour_input' placeholder="12", value="12">
+              
+              </div>
+        
+          <div>
                         <button type="submit" class="btn btn-default btn-dark">Predict</button>
                     </div>        
                 </form>
@@ -280,14 +290,16 @@
         <div class="container">
             <div class="starter-template">
                 <h3>PM10 prediction:</h3>
-                <p class="lead">Below is the result for {{births[0].attendant}}.</p>
+                <p class="lead">Here's the result for {{births[0].attendant}}. {{travelhour}}.</p>
             </div>
+            <!--
             <table class="table table-hover">              
                 <tr><th>Date</th><th>PM10 (&#181;g/m<sup>3</sup>)</th></tr>
                 {% for birth in births %}
                 <tr><td>{{ birth['attendant']}}</td><td> {{ birth['birth_month'] }}</td></tr>
                 {% endfor %}
-            </table>
+            </table> -->
+
         </div><!-- /.container -->
       
     
@@ -326,14 +338,16 @@
               
         
         
-        <!--Div that will hold the pie chart -->   
-        <div id="chart_pie"></div>        
+        <!--Div that will hold the pie chart 
+        <div id="chart_pie"></div>        -->
+
+
+        <!-- bar plot
+        <div id="chart_div"></div>     --> 
         
+          
         <!-- line plot -->
-        <div id="curve_chart"></div> <!-- style="width: 900px; height: 500px" -->
-        
-        <!-- bar plot -->
-        <div id="chart_div"></div>
+        <div id="curve_chart",  style="width: 1000px; height: 500px"></div> <!-- -->
                 
         
         
