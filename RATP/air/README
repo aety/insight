@@ -1,0 +1,3 @@
+1. airQualityJsonToPickle
+2. pickleToData_PROPHET_hourly
+3. forecastToSQL
