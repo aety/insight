@@ -15,7 +15,7 @@ password = 'yanggnay'     # change this
 host     = 'localhost'
 port     = '5432'            # default port that postgres listens on
 #db_name = 'birth_db'
-db_name = 'auber_pm10_db'
+db_name = 'frankl_pm10_db'
 
 db = create_engine( 'postgresql://{}:{}@{}:{}/{}'.format(username, password, host, port, db_name) )
 con = None
@@ -73,7 +73,7 @@ def cesareans_output():
     patient = request.args.get('birth_month')
     time1 = datetime.strptime(patient,'%Y-%m-%d')
     time2 = time1 + timedelta(days=1)
-    query = "SELECT * FROM auber_pm10_table WHERE ds BETWEEN '%s' AND '%s'" % (time1, time2)
+    query = "SELECT * FROM frankl_pm10_table WHERE ds >= '%s' AND ds < '%s'" % (time1, time2)
     print(query)
     query_results=pd.read_sql_query(query,con)
     print(query_results)
