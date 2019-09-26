@@ -84,7 +84,15 @@ def cesareans_output():
     labelArr = ['good','moderate','unhealthy']
     hourlabelind = query_results.iloc[int(travelhour)].label
     hourlabel = labelArr[hourlabelind]
-    
+    airqualdiscribe = ['Satisfactory. Air pollution poses little or no risk.',
+                      'Acceptable. There may be a moderate health concern for a very small number of people.',
+                      'People with heart and lung diseases, older adults and children are at a greater risk.']
+    airqualdiscribe = airqualdiscribe[hourlabelind]
+    #textCArr = ["p-3 mb-2 bg-success text-white",                
+    #            "p-3 mb-2 bg-warning text-dark",
+    #           "p-3 mb-2 bg-danger text-white"]
+    textCArr = ["gree","orange","red"]
+    textc = textCArr[hourlabelind]    
     births = []
     #print(query_results)
     for i in range(0,query_results.shape[0]):
@@ -97,4 +105,5 @@ def cesareans_output():
     the_result = ModelIt(patient,births)
     return render_template("output.html", births = births, the_result = the_result, 
                            travelhour = travelhour,patient=patient,date_only = temp,
-                          air_qual=air_qual,hourlabel=hourlabel,hourlabelind=hourlabelind) ### here are the output variables
+                          air_qual=air_qual,hourlabel=hourlabel,hourlabelind=hourlabelind,
+                          airqualdiscribe=airqualdiscribe,textc=textc) ### here are the output variables

@@ -115,18 +115,18 @@
                 var options = {
                     
                     title: 'PM10 prediction (\u03BCg/m3)',
-                    curveType: 'function',
+                    curveType: 'function',                    
                     legend: {position: 'top',
                             maxLines: 2},        
-                    colors: ['black', 'green', 'orange', 'red', 'blue','black','black'],
+                    colors: ['blue', 'green', 'orange', 'red', 'black','blue','black'],
                     lineWidth: 3,
                     vAxis: {viewWindow: {min: 0}},
                     seriesType: 'bars',        
                     bar: {groupWidth: "5%"},
                     crosshair: { trigger: 'both' },
                     interval: {
-                        'upper': { 'style':'line', 'color':'black', 'lineWidth': 0.25 },
-                        'lower': { 'style':'line', 'color':'black', 'lineWidth': 0.25 },    
+                        'upper': { 'style':'line', 'color':'blue', 'lineWidth': 0.25 },
+                        'lower': { 'style':'line', 'color':'blue', 'lineWidth': 0.25 },    
                     },
                     series: {0: {type: 'line'},
                              1: {type: 'line'},
@@ -252,17 +252,20 @@
                 <h3>PM10 prediction:</h3>
                 
                 
-        <script>
-            var textColor = "green";
-        </script>
                 <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is 
                     </p> 
-                    <div class="p-3 mb-2 bg-success text-white">{{hourlabel}}</div>
-                    
-                 
+                    <font color={{textc}}>{{airqualdiscribe}}</font>
                     
                 
                     <!--<div class="p-3 mb-2 bg-success text-white">{{hourlabel}}</div>-->
+                
+                
+                
+        
+                
+                <a href="https://airnow.gov/index.cfm?action=aqibasics.particle">            
+                    <button type="button" class="btn btn-info btn-default">Learn more</button> 
+                </a>
             </div>
             <!--
             <table class="table table-hover">              
