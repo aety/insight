@@ -82,10 +82,13 @@ def cesareans_output():
     air_qual=query_results.iloc[int(travelhour)].yhat
     air_qual="{:10.2f}".format(air_qual)
     births = []
+    #print(query_results)
     for i in range(0,query_results.shape[0]):
         births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'],
                            birth_month=query_results.iloc[i]['yhat'],
-                           birth_month1=query_results.iloc[i]['yhat_upper'],birth_month2=query_results.iloc[i]['yhat_lower'])
+                           birth_month1=query_results.iloc[i]['yhat_upper'],birth_month2=query_results.iloc[i]['yhat_lower'],
+                           st_air=query_results.iloc[i]['yhat_st'],st_air1=query_results.iloc[i]['yhat_upper_st'],
+                           st_air2=query_results.iloc[i]['yhat_lower_st'])
                      )
     the_result = ModelIt(patient,births)
     return render_template("output.html", births = births, the_result = the_result, 
