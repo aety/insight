@@ -112,15 +112,14 @@
                 data.setCell(4, 9, 154);
                 data.setCell(5, 9, 154);
                 
-                var options = {
-                    
-                    title: 'PM10 prediction (\u03BCg/m3)',
+                var options = {                    
+                    title: 'Prediction',
                     curveType: 'function',                    
                     legend: {position: 'top',
                             maxLines: 2},        
                     colors: ['blue', 'green', 'orange', 'red', 'black','blue','black'],
                     lineWidth: 3,
-                    vAxis: {viewWindow: {min: 0}},
+                    vAxis: {viewWindow: {min: 0}, title: 'PM10 (\u03BCg/m3)'},
                     seriesType: 'bars',        
                     bar: {groupWidth: "5%"},
                     crosshair: { trigger: 'both' },
@@ -168,7 +167,7 @@
               minorTicks: 10
             };
 
-            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+            var chart = new google.visualization.Gauge(document.getElementById('gauge_div'));
 
             chart.draw(data, options);
 
@@ -176,6 +175,151 @@
           }
         </script>
             
+        
+        
+         
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Year', ''],
+                    ['2012',  25.200000],
+                    ['2013',  42.128011],
+                    ['2014',  37.541130],
+                    ['2015',  36.965904],
+                    ['2016',  48.364124],
+                    ['2017',  60.220384],
+                    ['2018',  54.433170],
+                    ['2019',  52.724065],
+                ]);
+                
+                var options = {
+                    title: 'Historical trends',
+                    hAxis: {title: 'Year',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
+                    legend: {position: 'none'},
+                    animation:{startup: 'True', duration: 1000}
+                };
+                
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        </script>
+        
+        
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Month', ''],
+                    [1,40.825958],
+                    [2,     44.717519],
+                    [3,     46.065604],
+                    [4,     48.488875],
+                    [5,     39.719348],
+                    [6,     41.594964],
+                    [7,     51.972276],
+                    [8,     56.623118],
+                    [9,     49.375789],
+                    [10,     49.532982],
+                    [11,    50.668726],
+                    [12,    47.797591]
+                ]);
+                
+                var options = {
+                    title: 'Historical trends',
+                    hAxis: {title: 'Month',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}},          
+                    legend: {position: 'none'},
+                    animation:{startup: 'True', duration: 1000}
+                };
+                
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div_m'));
+                chart.draw(data, options);
+            }
+        </script>
+        
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([                    
+                    ['Weekday', ''],
+                    ['Mon', 50.924916],
+                    ['Tue', 54.245120],
+                    ['Wed', 55.586921],
+                    ['Thu', 54.200351],
+                    ['Fri', 50.815020],
+                    ['Sat', 33.641405],
+                    ['Sun', 30.923562]                    
+                ]);
+                
+                var options = {
+                    title: 'Historical trends',
+                    hAxis: {title: 'Week',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}},          
+                    legend: {position: 'none'},
+                    animation:{startup: 'True', duration: 1000}
+                };
+                
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div_w'));
+                chart.draw(data, options);
+            }
+        </script>
+        
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([                    
+                    ['Hour', ''],
+                    [0,     27.520578],
+                    [1,     35.561591],
+                    [2,     54.491908],
+                    [3,     72.213345],
+                    [4,     70.731064],
+                    [5,     56.506797],
+                    [6,     47.306548],
+                    [7,     41.416347],
+                    [8,     43.638782],
+                    [9,     45.417667],
+                    [10,    50.456937],
+                    [11,    59.022862],
+                    [12,    66.729844],
+                    [13,    65.658526],
+                    [14,    61.930321],
+                    [15,    51.159494],
+                    [16,    44.315700],
+                    [17,    42.352321],
+                    [18,    38.843564],
+                    [19,    38.804795],
+                    [20,    37.033054],
+                    [21,    31.530780],
+                    [22,    23.780591],
+                    [23,    20.001367]]);
+                
+                var options = {
+                    title: 'Historical trends',
+                    hAxis: {title: 'Hour',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}},          
+                    legend: {position: 'none'},
+                    animation:{startup: 'True', duration: 1000}
+                };
+                
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div_h'));
+                chart.draw(data, options);
+            }
+        </script>
+        
         
         
         
@@ -234,15 +378,22 @@
                 <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is </p> 
                 
                 <!-- gauge -->        
-                <div id="chart_div" style="width: 200px; height: 200px;"></div>
+                <div id="gauge_div" style="width: 200px; height: 200px;"></div>
                 
                 <font color={{textc}}>{{airqualdiscribe}}</font>
                 <a href="https://airnow.gov/index.cfm?action=aqibasics.particle">            
-                    <button type="button" class="btn btn-info btn-default">Learn more</button> 
+                    <button type="button" class="btn btn-info">Learn more</button> 
                 </a>
                 
                 <!-- line plot -->
                 <div id="curve_chart",  style="width: 800px; height: 600px;"></div> <!-- -->            
+                
+                <!-- history plot -->
+                <div id="chart_div" style="width: 800px; height: 400px;"></div>
+                <div id="chart_div_m" style="width: 800px; height: 400px;"></div>
+                <div id="chart_div_w" style="width: 800px; height: 400px;"></div>
+                <div id="chart_div_h" style="width: 800px; height: 400px;"></div>
+                
             </div><!-- /.container -->
 
         
