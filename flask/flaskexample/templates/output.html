@@ -90,65 +90,69 @@
             
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Time', 'PM10','upper','lower','Good','Moderate','Sensitive','Unhealthy'],
+                    ['Time', 'PM10','upper','lower','Good','Moderate','Unhealthy for some','Unhealthy','Very Unhealthy'],
                     ['12 am',  {{births[0].birth_month}},{{births[0].birth_month1}},{{births[0].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['1 am',  {{births[1].birth_month}},{{births[1].birth_month1}},{{births[1].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['2 am',  {{births[2].birth_month}},{{births[2].birth_month1}},{{births[2].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['3 am',  {{births[3].birth_month}},{{births[3].birth_month1}},{{births[3].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['4 am',  {{births[4].birth_month}},{{births[4].birth_month1}},{{births[4].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['5 am',  {{births[5].birth_month}},{{births[5].birth_month1}},{{births[5].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['6 am',  {{births[6].birth_month}},{{births[6].birth_month1}},{{births[6].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['7 am',  {{births[7].birth_month}},{{births[7].birth_month1}},{{births[7].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['8 am',  {{births[8].birth_month}},{{births[8].birth_month1}},{{births[8].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['9 am',  {{births[9].birth_month}},{{births[9].birth_month1}},{{births[9].birth_month2}}
-                                                                 ,54,154,254,354],
+                                                                 ,0,54,154,254,354],
                     ['10 am',  {{births[10].birth_month}},{{births[10].birth_month1}},{{births[10].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['11 am',  {{births[11].birth_month}},{{births[11].birth_month1}},{{births[11].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['12 pm',  {{births[12].birth_month}},{{births[12].birth_month1}},{{births[12].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['1 pm',  {{births[13].birth_month}},{{births[13].birth_month1}},{{births[13].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['2 pm',  {{births[14].birth_month}},{{births[14].birth_month1}},{{births[14].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['3 pm',  {{births[15].birth_month}},{{births[15].birth_month1}},{{births[15].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['4 pm',  {{births[16].birth_month}},{{births[16].birth_month1}},{{births[16].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['5 pm',  {{births[17].birth_month}},{{births[17].birth_month1}},{{births[17].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['6 pm',  {{births[18].birth_month}},{{births[18].birth_month1}},{{births[18].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['7 pm',  {{births[19].birth_month}},{{births[19].birth_month1}},{{births[19].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['8 pm',  {{births[20].birth_month}},{{births[20].birth_month1}},{{births[20].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['9 pm',  {{births[21].birth_month}},{{births[21].birth_month1}},{{births[21].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['10 pm',  {{births[22].birth_month}},{{births[22].birth_month1}},{{births[22].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                     ['11 pm',  {{births[23].birth_month}},{{births[23].birth_month1}},{{births[23].birth_month2}},
-                                                                 54,154,254,354],
+                                                                 0,54,154,254,354],
                 ]);
+                data.removeColumn(8);
+                
                 
                 var options = {
                     title: 'PM10 prediction (\u03BCg/m3)',
                     curveType: 'none',
-                    legend: { position: 'bottom'},        
+                    legend: {position: 'top',
+                            maxLines: 3},        
                     colors: ['black','gray','gray', 'green', 'yellow', 'orange', 'red'],
                     lineWidth: 3,
                     seriesType: 'line',
-                    series: {0: {type: 'line'}}
+                    series: {0: {type: 'line'}},
+                    crosshair: { trigger: 'both' }                    
                 };
                 
                 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));                
@@ -234,7 +238,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button> -->
-                <a class="navbar-brand" href="#">Metro Pollutant</a>
+                <a class="navbar-brand">Metro Pollutant</a>
+                
               </div>
               <div id="navbar" class="collapse navbar-collapse">
                   <ul class="nav navbar-nav">
@@ -314,7 +319,7 @@
         <div class="container">
             <div class="starter-template">
                 <h3>PM10 prediction:</h3>
-                <p class="lead">Here's the result for {{births[0].attendant}} at {{travelhour}}.</p>
+                <p class="lead">The PM10 concentration for {{date_only}} at {{travelhour}} o'clock is {{air_qual}}.</p>
             </div>
             <!--
             <table class="table table-hover">              
@@ -371,7 +376,7 @@
         
           
         <!-- line plot -->
-        <div id="curve_chart",  style="width: 1000px; height: 500px"></div> <!-- -->
+        <div id="curve_chart",  style="align: center; width: 700px; height: 600px;"></div> <!-- -->
                 
         
         

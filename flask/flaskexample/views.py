@@ -71,16 +71,23 @@ def cesareans_input():
 def cesareans_output():
     #pull 'birth_month' from input field and store it
     patient = request.args.get('birth_month')
+    temp = patient[0:10]
+    print(temp)
     travelhour = request.args.get('hour_input')
     time1 = datetime.strptime(patient,'%Y-%m-%d')
     time2 = time1 + timedelta(days=1)
     query = "SELECT * FROM frankl_pm10_table WHERE ds >= '%s' AND ds < '%s'" % (time1, time2)
-    print(query)
+    #print(query)
     query_results=pd.read_sql_query(query,con)
-    print(query_results)
+    air_qual=query_results.iloc[int(travelhour)].yhat
+    air_qual="{:10.2f}".format(air_qual)
     births = []
     for i in range(0,query_results.shape[0]):
-        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'], birth_month=query_results.iloc[i]['yhat'],birth_month1=query_results.iloc[i]['yhat_upper'],birth_month2=query_results.iloc[i]['yhat_lower']))
+        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'],
+                           birth_month=query_results.iloc[i]['yhat'],
+                           birth_month1=query_results.iloc[i]['yhat_upper'],birth_month2=query_results.iloc[i]['yhat_lower'])
+                     )
     the_result = ModelIt(patient,births)
-    print(travelhour)
-    return render_template("output.html", births = births, the_result = the_result, travelhour = travelhour,patient=patient) ### here are the output variables
+    return render_template("output.html", births = births, the_result = the_result, 
+                           travelhour = travelhour,patient=patient,date_only = temp,
+                          air_qual=air_qual) ### here are the output variables
