@@ -40,15 +40,18 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
             
+                    
+                
+            
             
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
             
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Time', 'metro',{id:'upper', type:'number', role:'interval'},
+                    ['Time', 'Metro',{id:'upper', type:'number', role:'interval'},
                      {id:'lower', type:'number', role:'interval'},
-                     'Good','Moderate','Unhealthy for some','Unhealthy','Very Unhealthy','street'],
+                     'Good','Moderate','Unhealthy','More Unhealthy','Very Unhealthy','Street'],
                     ['12 am',  {{births[0].birth_month}},{{births[0].birth_month1}},{{births[0].birth_month2}}
                                                                  ,0,54,154,254,354,{{births[0].st_air}}],
                     ['1 am',  {{births[1].birth_month}},{{births[1].birth_month1}},{{births[1].birth_month2}}
@@ -100,21 +103,26 @@
                 ]);                
                 data.removeColumn(8);
                 data.removeColumn(7);
-                data.addColumn({id: 'barp', type: 'number'})
+                data.addColumn('number','Selected hour')                
                 data.setCell({{travelhour}}, 8, {{air_qual}});
-                
+                data.addColumn('number', 'Metro closed')                
+                data.setCell(1, 9, 154);
+                data.setCell(2, 9, 154);
+                data.setCell(3, 9, 154);
+                data.setCell(4, 9, 154);
+                data.setCell(5, 9, 154);
                 
                 var options = {
                     
                     title: 'PM10 prediction (\u03BCg/m3)',
-                    curveType: 'none',
+                    curveType: 'function',
                     legend: {position: 'top',
-                            maxLines: 3},        
-                    colors: ['black', 'green', 'orange', 'red', 'blue','black'],
+                            maxLines: 2},        
+                    colors: ['black', 'green', 'orange', 'red', 'blue','black','black'],
                     lineWidth: 3,
                     vAxis: {viewWindow: {min: 0}},
                     seriesType: 'bars',        
-                    bar: {groupWidth: "30%"},
+                    bar: {groupWidth: "5%"},
                     crosshair: { trigger: 'both' },
                     interval: {
                         'upper': { 'style':'line', 'color':'black', 'lineWidth': 0.25 },
@@ -124,22 +132,21 @@
                              1: {type: 'line'},
                              2: {type: 'line'},
                              3: {type: 'line'},
-                             4: {type: 'line'},
+                             4: {type: 'line'},                                                        
+                             5: {type: 'bar'},
+                             6: {type: 'area'},
                              },                    
                 };
                 
                 var chart = new google.visualization.ComboChart(document.getElementById('curve_chart'));                
                 chart.draw(data, options);
             }
+            
             </script>     
             
             
             
             
-        
-        
-        
-        
         
         
         
@@ -237,10 +244,25 @@
         
         <br><br><br>
         
+        
+        
+        
         <div class="container">
             <div class="starter-template">
                 <h3>PM10 prediction:</h3>
-                <p class="lead">The PM10 concentration for {{date_only}} at {{travelhour}} o'clock is {{air_qual}}.</p>
+                
+                
+        <script>
+            var textColor = "green";
+        </script>
+                <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is 
+                    </p> 
+                    <div class="p-3 mb-2 bg-success text-white">{{hourlabel}}</div>
+                    
+                 
+                    
+                
+                    <!--<div class="p-3 mb-2 bg-success text-white">{{hourlabel}}</div>-->
             </div>
             <!--
             <table class="table table-hover">              
@@ -251,7 +273,7 @@
             </table> -->
 
         </div><!-- /.container -->
-      
+
         
         
         
@@ -264,7 +286,7 @@
         
           
         <!-- line plot -->
-        <div id="curve_chart",  style="align: center; width: 1000px; height: 800;"></div> <!-- -->
+        <div id="curve_chart",  style="align: center; width: 900px; height: 600px;"></div> <!-- -->
                 
         
     
@@ -300,7 +322,6 @@
         
         
         
-              
         
         
         

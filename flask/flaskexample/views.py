@@ -81,6 +81,10 @@ def cesareans_output():
     query_results=pd.read_sql_query(query,con)
     air_qual=query_results.iloc[int(travelhour)].yhat
     air_qual="{:10.2f}".format(air_qual)
+    labelArr = ['good','moderate','unhealthy']
+    hourlabelind = query_results.iloc[int(travelhour)].label
+    hourlabel = labelArr[hourlabelind]
+    
     births = []
     #print(query_results)
     for i in range(0,query_results.shape[0]):
@@ -93,4 +97,4 @@ def cesareans_output():
     the_result = ModelIt(patient,births)
     return render_template("output.html", births = births, the_result = the_result, 
                            travelhour = travelhour,patient=patient,date_only = temp,
-                          air_qual=air_qual) ### here are the output variables
+                          air_qual=air_qual,hourlabel=hourlabel,hourlabelind=hourlabelind) ### here are the output variables
