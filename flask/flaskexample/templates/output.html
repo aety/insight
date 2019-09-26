@@ -90,41 +90,65 @@
             
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Time', 'PM10','Good','Moderate','Sensitive','Unhealthy'],
-                    ['12 am',  {{births[0].birth_month}},54,154,254,354],
-                    ['1 am',  {{births[1].birth_month}},54,154,254,354],
-                    ['2 am',  {{births[2].birth_month}},54,154,254,354],
-                    ['3 am',  {{births[3].birth_month}},54,154,254,354],                    
-                    ['4 am',  {{births[4].birth_month}},54,154,254,354],                    
-                    ['5 am',  {{births[5].birth_month}},54,154,254,354],                    
-                    ['6 am',  {{births[6].birth_month}},54,154,254,354],                    
-                    ['7 am',  {{births[7].birth_month}},54,154,254,354],                    
-                    ['8 am',  {{births[8].birth_month}},54,154,254,354],                    
-                    ['9 am',  {{births[9].birth_month}},54,154,254,354],                    
-                    ['10 am',  {{births[10].birth_month}},54,154,254,354],                    
-                    ['11 am',  {{births[11].birth_month}},54,154,254,354],                    
-                    ['12 pm',  {{births[12].birth_month}},54,154,254,354],                    
-                    ['1 pm',  {{births[13].birth_month}},54,154,254,354],                    
-                    ['2 pm',  {{births[14].birth_month}},54,154,254,354],                    
-                    ['3 pm',  {{births[15].birth_month}},54,154,254,354],                    
-                    ['4 pm',  {{births[16].birth_month}},54,154,254,354],                    
-                    ['5 pm',  {{births[17].birth_month}},54,154,254,354],                    
-                    ['6 pm',  {{births[18].birth_month}},54,154,254,354],                    
-                    ['7 pm',  {{births[19].birth_month}},54,154,254,354],                    
-                    ['8 pm',  {{births[20].birth_month}},54,154,254,354],                    
-                    ['9 pm',  {{births[21].birth_month}},54,154,254,354],                    
-                    ['10 pm',  {{births[22].birth_month}},54,154,254,354],                    
-                    ['11 pm',  {{births[23].birth_month}},54,154,254,354],                   
+                    ['Time', 'PM10','upper','lower','Good','Moderate','Sensitive','Unhealthy'],
+                    ['12 am',  {{births[0].birth_month}},{{births[0].birth_month1}},{{births[0].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['1 am',  {{births[1].birth_month}},{{births[1].birth_month1}},{{births[1].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['2 am',  {{births[2].birth_month}},{{births[2].birth_month1}},{{births[2].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['3 am',  {{births[3].birth_month}},{{births[3].birth_month1}},{{births[3].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['4 am',  {{births[4].birth_month}},{{births[4].birth_month1}},{{births[4].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['5 am',  {{births[5].birth_month}},{{births[5].birth_month1}},{{births[5].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['6 am',  {{births[6].birth_month}},{{births[6].birth_month1}},{{births[6].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['7 am',  {{births[7].birth_month}},{{births[7].birth_month1}},{{births[7].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['8 am',  {{births[8].birth_month}},{{births[8].birth_month1}},{{births[8].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['9 am',  {{births[9].birth_month}},{{births[9].birth_month1}},{{births[9].birth_month2}}
+                                                                 ,54,154,254,354],
+                    ['10 am',  {{births[10].birth_month}},{{births[10].birth_month1}},{{births[10].birth_month2}},
+                                                                 54,154,254,354],
+                    ['11 am',  {{births[11].birth_month}},{{births[11].birth_month1}},{{births[11].birth_month2}},
+                                                                 54,154,254,354],
+                    ['12 pm',  {{births[12].birth_month}},{{births[12].birth_month1}},{{births[12].birth_month2}},
+                                                                 54,154,254,354],
+                    ['1 pm',  {{births[13].birth_month}},{{births[13].birth_month1}},{{births[13].birth_month2}},
+                                                                 54,154,254,354],
+                    ['2 pm',  {{births[14].birth_month}},{{births[14].birth_month1}},{{births[14].birth_month2}},
+                                                                 54,154,254,354],
+                    ['3 pm',  {{births[15].birth_month}},{{births[15].birth_month1}},{{births[15].birth_month2}},
+                                                                 54,154,254,354],
+                    ['4 pm',  {{births[16].birth_month}},{{births[16].birth_month1}},{{births[16].birth_month2}},
+                                                                 54,154,254,354],
+                    ['5 pm',  {{births[17].birth_month}},{{births[17].birth_month1}},{{births[17].birth_month2}},
+                                                                 54,154,254,354],
+                    ['6 pm',  {{births[18].birth_month}},{{births[18].birth_month1}},{{births[18].birth_month2}},
+                                                                 54,154,254,354],
+                    ['7 pm',  {{births[19].birth_month}},{{births[19].birth_month1}},{{births[19].birth_month2}},
+                                                                 54,154,254,354],
+                    ['8 pm',  {{births[20].birth_month}},{{births[20].birth_month1}},{{births[20].birth_month2}},
+                                                                 54,154,254,354],
+                    ['9 pm',  {{births[21].birth_month}},{{births[21].birth_month1}},{{births[21].birth_month2}},
+                                                                 54,154,254,354],
+                    ['10 pm',  {{births[22].birth_month}},{{births[22].birth_month1}},{{births[22].birth_month2}},
+                                                                 54,154,254,354],
+                    ['11 pm',  {{births[23].birth_month}},{{births[23].birth_month1}},{{births[23].birth_month2}},
+                                                                 54,154,254,354],
                 ]);
                 
                 var options = {
                     title: 'PM10 prediction (\u03BCg/m3)',
                     curveType: 'none',
                     legend: { position: 'bottom'},        
-                    colors: ['black', 'green', 'yellow', 'orange', 'red'],
+                    colors: ['black','gray','gray', 'green', 'yellow', 'orange', 'red'],
                     lineWidth: 3,
                     seriesType: 'line',
-                    series: {0: {type: 'area'}}
+                    series: {0: {type: 'line'}}
                 };
                 
                 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));                
@@ -235,7 +259,7 @@
                     
                     <div class="form-group">
             <label for="birth_month">Date:</label>
-            <input type="text" id="birth_month" name='birth_month' placeholder="2019-09-26", value="2019-09-26">
+            <input type="text" id="birth_month" name='birth_month' placeholder={{patient}}, value={{patient}}>
           <!--</div>
           
           <div class="form-group">-->
@@ -270,7 +294,7 @@
 -->
               
               <label for="hour_input">Hour:</label>
-              <input type="text" id="hour_input" name='hour_input' placeholder="12", value="12">
+              <input type="text" id="hour_input" name='hour_input' placeholder={{travelhour}}, value={{travelhour}}>
               
               </div>
         

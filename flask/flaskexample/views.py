@@ -80,7 +80,7 @@ def cesareans_output():
     print(query_results)
     births = []
     for i in range(0,query_results.shape[0]):
-        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'], birth_month=query_results.iloc[i]['yhat']))
+        births.append(dict(index=query_results.iloc[i]['index'], attendant=query_results.iloc[i]['ds'], birth_month=query_results.iloc[i]['yhat'],birth_month1=query_results.iloc[i]['yhat_upper'],birth_month2=query_results.iloc[i]['yhat_lower']))
     the_result = ModelIt(patient,births)
     print(travelhour)
-    return render_template("output.html", births = births, the_result = the_result, travelhour = travelhour) ### here are the output variables
+    return render_template("output.html", births = births, the_result = the_result, travelhour = travelhour,patient=patient) ### here are the output variables
