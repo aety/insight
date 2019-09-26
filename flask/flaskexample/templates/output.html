@@ -103,37 +103,37 @@
                 ]);                
                 data.removeColumn(8);
                 data.removeColumn(7);
-                data.addColumn('number','Selected hour')                
-                data.setCell({{travelhour}}, 8, {{air_qual}});
                 data.addColumn('number', 'Metro closed')                
-                data.setCell(1, 9, 154);
-                data.setCell(2, 9, 154);
-                data.setCell(3, 9, 154);
-                data.setCell(4, 9, 154);
-                data.setCell(5, 9, 154);
+                data.setCell(1, 8, 154);
+                data.setCell(2, 8, 154);
+                data.setCell(3, 8, 154);
+                data.setCell(4, 8, 154);
+                data.setCell(5, 8, 154);
+                data.addColumn('number','Selected hour')                
+                data.setCell({{travelhour}}, 9, {{air_qual}});                
+                data.removeColumn(6);
+                data.removeColumn(5);
+                data.removeColumn(4);
                 
                 var options = {                    
                     title: 'Prediction',
                     curveType: 'function',                    
                     legend: {position: 'top',
-                            maxLines: 2},        
-                    colors: ['blue', 'green', 'orange', 'red', 'black','blue','black'],
+                            maxLines: 3},        
+                    colors: ['#009999', 'black', 'black','#009999'],
                     lineWidth: 3,
-                    vAxis: {viewWindow: {min: 0}, title: 'PM10 (\u03BCg/m3)'},
+                    vAxis: {viewWindow: {min: 0, max: 120}, title: 'PM10 (\u03BCg/m3)'},
                     seriesType: 'bars',        
                     bar: {groupWidth: "5%"},
                     crosshair: { trigger: 'both' },
                     interval: {
-                        'upper': { 'style':'line', 'color':'blue', 'lineWidth': 0.25 },
-                        'lower': { 'style':'line', 'color':'blue', 'lineWidth': 0.25 },    
+                        'upper': { 'style':'line', 'lineWidth': 0.25 },
+                        'lower': { 'style':'line', 'lineWidth': 0.25 },    
                     },
                     series: {0: {type: 'line'},
-                             1: {type: 'line'},
-                             2: {type: 'line'},
-                             3: {type: 'line'},
-                             4: {type: 'line'},                                                        
-                             5: {type: 'bar'},
-                             6: {type: 'area'},
+                             1: {type: 'line'},                                                        
+                             2: {type: 'area'},
+                             3: {type: 'bar'},
                              },                    
                 };
                 
@@ -159,12 +159,12 @@
               ['PM10', {{air_qual}}],              
             ]);
 
-            var options = {
-              max: 254,
-              width: 200, height: 200,
-              redFrom: 154, redTo: 254,
-              yellowFrom:54, yellowTo: 154,
-              minorTicks: 10
+            var options = {                
+                max: 254,              
+                redFrom: 154, redTo: 254,
+                yellowFrom:54, yellowTo: 154,
+                minorTicks: 10,
+                animation:{duration: 5000, easing: 'out'},
             };
 
             var chart = new google.visualization.Gauge(document.getElementById('gauge_div'));
@@ -193,17 +193,25 @@
                     ['2017',  60.220384],
                     ['2018',  54.433170],
                     ['2019',  52.724065],
-                ]);
+                ]);                
+                data.addColumn('number', 'current');
+                data.setCell({{year}},2,data.getValue({{year}}, 1));                
                 
                 var options = {
+                    colors: ['#009999','#009999'],
+                    seriesType: 'bars',        
+                    bar: {groupWidth: "10%"},
                     title: 'Historical trends',
                     hAxis: {title: 'Year',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000}
+                    animation:{startup: 'True', duration: 1000},
+                    series: {0: {type: 'area'}},
+                    width:300,
+                    height:200
                 };
                 
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
         </script>
@@ -230,16 +238,24 @@
                     [11,    50.668726],
                     [12,    47.797591]
                 ]);
+                data.addColumn('number', 'current');
+                data.setCell({{month}},2,data.getValue({{month}}, 1));          
                 
                 var options = {
+                    colors: ['#009999','#009999'],
+                    seriesType: 'bars',        
+                    bar: {groupWidth: "17.14%"},
                     title: 'Historical trends',
                     hAxis: {title: 'Month',  titleTextStyle: {color: 'black'}},          
-                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000}
+                    animation:{startup: 'True', duration: 1000},
+                    series: {0: {type: 'area'}},
+                    width:300,
+                    height:200
                 };
                 
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div_m'));
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div_m'));
                 chart.draw(data, options);
             }
         </script>
@@ -260,16 +276,24 @@
                     ['Sat', 33.641405],
                     ['Sun', 30.923562]                    
                 ]);
+                data.addColumn('number', 'current');
+                data.setCell({{day}},2,data.getValue({{day}}, 1));          
                 
                 var options = {
+                    colors: ['#009999','#009999'],
+                    seriesType: 'bars',        
+                    bar: {groupWidth: "10%"},
                     title: 'Historical trends',
-                    hAxis: {title: 'Week',  titleTextStyle: {color: 'black'}},          
-                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}},          
+                    hAxis: {title: 'Weekday',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000}
+                    animation:{startup: 'True', duration: 1000},
+                    series: {0: {type: 'area'}},
+                    width:300,
+                    height:200
                 };
                 
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div_w'));
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div_w'));
                 chart.draw(data, options);
             }
         </script>
@@ -307,23 +331,29 @@
                     [22,    23.780591],
                     [23,    20.001367]]);
                 
+                data.addColumn('number', 'current');
+                data.setCell({{hour}},2,data.getValue({{hour}}, 1));          
+                
                 var options = {
+                    colors: ['#009999','#009999'],
+                    seriesType: 'bars',        
+                    bar: {groupWidth: "34.28%"},
                     title: 'Historical trends',
                     hAxis: {title: 'Hour',  titleTextStyle: {color: 'black'}},          
-                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}},          
+                    vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000}
+                    animation:{startup: 'True', duration: 1000},
+                    series: {0: {type: 'area'}},
+                    width:300,
+                    height:200
                 };
                 
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div_h'));
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div_h'));
                 chart.draw(data, options);
             }
         </script>
-        
-        
-        
-        
     </head>
+    
     
     
     
@@ -375,30 +405,57 @@
             
             <div class="cover">
                 <h3>PM10 prediction:</h3>
-                <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is </p> 
-                
-                <!-- gauge -->        
-                <div id="gauge_div" style="width: 200px; height: 200px;"></div>
-                
+                <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is <b>{{binary}}</b> than street-level.</p>
+               
+                                
                 <font color={{textc}}>{{airqualdiscribe}}</font>
                 <a href="https://airnow.gov/index.cfm?action=aqibasics.particle">            
                     <button type="button" class="btn btn-info">Learn more</button> 
                 </a>
                 
-                <!-- line plot -->
-                <div id="curve_chart",  style="width: 800px; height: 600px;"></div> <!-- -->            
                 
-                <!-- history plot -->
-                <div id="chart_div" style="width: 800px; height: 400px;"></div>
-                <div id="chart_div_m" style="width: 800px; height: 400px;"></div>
-                <div id="chart_div_w" style="width: 800px; height: 400px;"></div>
-                <div id="chart_div_h" style="width: 800px; height: 400px;"></div>
+                <table class="columns">
+                    <tr>
+                        <!-- gauge -->        
+                        <td><div id="gauge_div" style="width: 150px; height: 150px;"></div></td>
+                        
+                        <!-- line plot -->
+                        <td><div id="curve_chart",  style="width: 650px; height: 450px;"></div></td>
+                    </tr>
+                </table>
                 
+                <!-- history plot -->                
+                <table class="columns">
+                    <tr>
+                        <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
+                        <td><div id="chart_div_m" style="border: 1px solid #ccc"></div></td>                        
+                    </tr>
+                    <tr>
+                        <td><div id="chart_div_w" style="border: 1px solid #ccc"></div></td>
+                        <td><div id="chart_div_h" style="border: 1px solid #ccc"></div></td>
+                    </tr>
+                </table>
+            
             </div><!-- /.container -->
+            
+            
+            <br><br><br>
+            
+            
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                    <p>Project at <a href="https://insightdatascience.com">Insight Data Science</a>, by
+                        <a href="https://sites.google.com/view/aety">Anne Yang</a>. Source code at                         
+                        <a href="https://github.com/aety">@aety</a>.
+                    </p>
+                </div>
+            </footer>
+        
+            
+        </div>
+            
 
         
-      
-      
 
 
         <!-- Bootstrap core JavaScript
@@ -412,11 +469,5 @@
         
         <script src="static/js/bootstrap.min.js"></script>
         
-        
-        
-        
-        
-        
-        
-    </body>
+    </body>    
 </html>
