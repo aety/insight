@@ -201,7 +201,7 @@
                     colors: ['#009999','#009999'],
                     seriesType: 'bars',        
                     bar: {groupWidth: "10%"},
-                    title: 'Historical trends',
+                    //title: 'Historical trends',
                     hAxis: {title: 'Year',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
@@ -245,7 +245,7 @@
                     colors: ['#009999','#009999'],
                     seriesType: 'bars',        
                     bar: {groupWidth: "17.14%"},
-                    title: 'Historical trends',
+                    //title: 'Historical trends',
                     hAxis: {title: 'Month',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
@@ -283,7 +283,7 @@
                     colors: ['#009999','#009999'],
                     seriesType: 'bars',        
                     bar: {groupWidth: "10%"},
-                    title: 'Historical trends',
+                    //title: 'Historical trends',
                     hAxis: {title: 'Weekday',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
@@ -338,7 +338,7 @@
                     colors: ['#009999','#009999'],
                     seriesType: 'bars',        
                     bar: {groupWidth: "34.28%"},
-                    title: 'Historical trends',
+                    //title: 'Historical trends',
                     hAxis: {title: 'Hour',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
@@ -401,12 +401,15 @@
                     <div id="gauge_div" style="width: 150px; height: 150px;"></div>
                 <p class="lead">                
                     <font color={{textc}}>{{airqualdiscribe}}</font>
-                    <a href="https://airnow.gov/index.cfm?action=aqibasics.particle"></a>                                       
+                    <a href="https://airnow.gov/index.cfm?action=aqibasics.particle">
+                        <button type="button" class="btn btn-outline-light">Learn more</button> 
+                    </a>                                       
                 </p>
-                <button type="button" class="btn btn-outline-light">Learn more</button> 
+                
                 
                 <br><br>
                 
+                <h3>Data:</h3>
                 <table class="columns">
                     <tr>
                         <!-- line plot -->
@@ -416,6 +419,7 @@
                 
                 <br><br>
                 
+                <h3>Historical trends:</h3>
                 <!-- history plot -->                
                 <table class="columns">
                     <tr>
