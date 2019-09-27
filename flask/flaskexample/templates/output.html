@@ -104,25 +104,25 @@
                 data.removeColumn(8);
                 data.removeColumn(7);
                 data.addColumn('number', 'Metro closed')                
-                data.setCell(1, 8, 154);
-                data.setCell(2, 8, 154);
-                data.setCell(3, 8, 154);
-                data.setCell(4, 8, 154);
-                data.setCell(5, 8, 154);
+                data.setCell(1, 8, 200);
+                data.setCell(2, 8, 200);
+                data.setCell(3, 8, 200);
+                data.setCell(4, 8, 200);
+                data.setCell(5, 8, 200);
                 data.addColumn('number','Selected hour')                
                 data.setCell({{travelhour}}, 9, {{air_qual}});                
-                data.removeColumn(6);
-                data.removeColumn(5);
-                data.removeColumn(4);
+                //data.removeColumn(6);
+                //data.removeColumn(5);
+                //data.removeColumn(4);
                 
                 var options = {                    
                     title: 'Prediction',
                     curveType: 'function',                    
                     legend: {position: 'top',
                             maxLines: 3},        
-                    colors: ['#009999', 'black', 'black','#009999'],
+                    colors: ['#009999', 'green','orange','red', 'black','black','#009999'],
                     lineWidth: 3,
-                    vAxis: {viewWindow: {min: 0, max: 120}, title: 'PM10 (\u03BCg/m3)'},
+                    vAxis: {viewWindow: {min: 0}, title: 'PM10 (\u03BCg/m3)'},
                     seriesType: 'bars',        
                     bar: {groupWidth: "5%"},
                     crosshair: { trigger: 'both' },
@@ -132,8 +132,11 @@
                     },
                     series: {0: {type: 'line'},
                              1: {type: 'line'},                                                        
-                             2: {type: 'area'},
-                             3: {type: 'bar'},
+                             2: {type: 'line'},                                                        
+                             3: {type: 'line'},                                                        
+                             4: {type: 'line'},                                                        
+                             5: {type: 'area'},
+                             6: {type: 'bar'},
                              },                    
                 };
                 
@@ -205,7 +208,7 @@
                     hAxis: {title: 'Year',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000},
+                    animation:{startup: 'True', duration: 5000},
                     series: {0: {type: 'area'}},
                     width:300,
                     height:200
@@ -249,7 +252,7 @@
                     hAxis: {title: 'Month',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000},
+                    animation:{startup: 'True', duration: 5000},
                     series: {0: {type: 'area'}},
                     width:300,
                     height:200
@@ -287,7 +290,7 @@
                     hAxis: {title: 'Weekday',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000},
+                    animation:{startup: 'True', duration: 5000},
                     series: {0: {type: 'area'}},
                     width:300,
                     height:200
@@ -342,7 +345,7 @@
                     hAxis: {title: 'Hour',  titleTextStyle: {color: 'black'}},          
                     vAxis: {title: '[PM10]',  titleTextStyle: {color: 'black'}}, 
                     legend: {position: 'none'},
-                    animation:{startup: 'True', duration: 1000},
+                    animation:{startup: 'True', duration: 5000},
                     series: {0: {type: 'area'}},
                     width:300,
                     height:200
@@ -360,6 +363,7 @@
     
     <body>
         
+        <!--
         <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
@@ -372,12 +376,11 @@
                       <li><a href="#">About</a></li>
                       <li><a href="#">Contact</a></li>
                   </ul>
-              </div><!--/.nav-collapse -->
+              </div>/.nav-collapse 
             </div>
-        </nav>
+        </nav>-->
         
-        <br><br>
-        
+        <br>
         <div class="container">
             <div class="cover">
                 <h2>When are you riding the train?</h2>
@@ -403,16 +406,19 @@
                 </form>
             </div>
             
+            <br>
+            
             <div class="cover">
                 <h3>PM10 prediction:</h3>
                 <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is <b>{{binary}}</b> than street-level.</p>
                
-                                
+                                <p class="lead">
                 <font color={{textc}}>{{airqualdiscribe}}</font>
                 <a href="https://airnow.gov/index.cfm?action=aqibasics.particle">            
                     <button type="button" class="btn btn-info">Learn more</button> 
                 </a>
                 
+                </p>
                 
                 <table class="columns">
                     <tr>
