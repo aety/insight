@@ -50,7 +50,7 @@ def cesareans_output():
                       'Acceptable. There may be a moderate health concern for a very small number of people.',
                       'People with heart and lung diseases, older adults and children are at a greater risk.']
     airqualdiscribe = airqualdiscribe[hourlabelind]
-    textCArr = ["#008000","#FF8000","#800000"]
+    textCArr = ["#6feb1c","yellow","#800000"]
     textc = textCArr[hourlabelind]    
     births = []
     for i in range(0,query_results.shape[0]):

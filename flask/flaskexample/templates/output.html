@@ -20,7 +20,7 @@
         <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="cover.css" rel="stylesheet">
+        <link href="../static/css/cover.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -39,10 +39,6 @@
         <!--LINE PLOT -->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            
-                    
-                
-            
             
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
@@ -144,7 +140,8 @@
                 chart.draw(data, options);
             }
             
-            </script>     
+            
+        </script>     
             
             
             
@@ -362,93 +359,82 @@
     
     
     <body>
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">  
+            <header class="masthead mb-auto">    
+                <div class="inner">      
+                    <h3 class="masthead-brand">metro-pollutant</h3>      
+                    <nav class="nav nav-masthead justify-content-center">        
+                        <a class="nav-link active" href="#">Home</a>                                
+                        <a class="nav-link" href="#">Contact</a>      
+                    </nav>    
+                </div>  
+            </header>
+
+  
+            
+            <main role="main" class="inner cover">
+                <div class="container">
+                    <br><br>
         
-        <!--
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand">Metro Pollutant</a>
-                
-              </div>
-              <div id="navbar" class="collapse navbar-collapse">
-                  <ul class="nav navbar-nav">
-                      <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">About</a></li>
-                      <li><a href="#">Contact</a></li>
-                  </ul>
-              </div>/.nav-collapse 
-            </div>
-        </nav>-->
-        
-        <br>
-        <div class="container">
-            <div class="cover">
+            <div class="cover">                
                 <h2>When are you riding the train?</h2>
                 <p>Enter a date in YYYY-MM-DD and HH (24) format</p>
-            </div>
-            
-            
-            
-            
-            
-            <div class = "container">
                 <form  action="/output" method="GET">
                     
                     <div class="form-group">
                         <label for="birth_month">Date:</label>
                         <input type="text" id="birth_month" name='birth_month' placeholder={{patient}}, value={{patient}}>
-                                      
                         <label for="hour_input">Hour:</label>
                         <input type="text" id="hour_input" name='hour_input' placeholder={{travelhour}}, value={{travelhour}}>
-                    
-                        <button type="submit" class="btn btn-default btn-dark">Predict</button>
-                    </div>        
+                        <br><br>
+                        <button type="submit" class="btn btn-outline-light">Predict</button>                        
+                    </div>    
                 </form>
             </div>
             
-            <br>
-            
+            <br><br>
+                   
             <div class="cover">
                 <h3>PM10 prediction:</h3>
-                <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is <b>{{binary}}</b> than street-level.</p>
-               
-                                <p class="lead">
-                <font color={{textc}}>{{airqualdiscribe}}</font>
-                <a href="https://airnow.gov/index.cfm?action=aqibasics.particle">            
-                    <button type="button" class="btn btn-info">Learn more</button> 
-                </a>
-                
+                <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is 
+                    <b>{{binary}}</b> than street-level.</p>
+                    <div id="gauge_div" style="width: 150px; height: 150px;"></div>
+                <p class="lead">                
+                    <font color={{textc}}>{{airqualdiscribe}}</font>
+                    <a href="https://airnow.gov/index.cfm?action=aqibasics.particle"></a>                                       
                 </p>
+                <button type="button" class="btn btn-outline-light">Learn more</button> 
+                
+                <br><br>
                 
                 <table class="columns">
                     <tr>
-                        <!-- gauge -->        
-                        <td><div id="gauge_div" style="width: 150px; height: 150px;"></div></td>
-                        
                         <!-- line plot -->
-                        <td><div id="curve_chart",  style="width: 650px; height: 450px;"></div></td>
+                        <td><div id="curve_chart",  style="width: 550px; height: 450px;"></div></td>
                     </tr>
                 </table>
+                
+                <br><br>
                 
                 <!-- history plot -->                
                 <table class="columns">
                     <tr>
                         <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
-                        <td><div id="chart_div_m" style="border: 1px solid #ccc"></div></td>                        
+                        <td><div id="chart_div_m" style="border: 1px solid #ccc"></div></td> 
                     </tr>
                     <tr>
                         <td><div id="chart_div_w" style="border: 1px solid #ccc"></div></td>
                         <td><div id="chart_div_h" style="border: 1px solid #ccc"></div></td>
                     </tr>
                 </table>
+            </div><!-- /.container -->      
+      
+      </div>
             
-            </div><!-- /.container -->
-            
-            
+            </main>
+  
             <br><br><br>
-            
-            
-            <footer class="mastfoot mt-auto">
+                <footer class="mastfoot mt-auto">
                 <div class="inner">
                     <p>Project at <a href="https://insightdatascience.com">Insight Data Science</a>, by
                         <a href="https://sites.google.com/view/aety">Anne Yang</a>. Source code at                         
@@ -456,12 +442,7 @@
                     </p>
                 </div>
             </footer>
-        
-            
         </div>
-            
-
-        
 
 
         <!-- Bootstrap core JavaScript
