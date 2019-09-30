@@ -365,7 +365,7 @@
                     <h3 class="masthead-brand">metro-pollutant</h3>      
                     <nav class="nav nav-masthead justify-content-center">        
                         <a class="nav-link active" href="#">Home</a>                                
-                        <a class="nav-link" href="#">Contact</a>      
+                        <!--<a class="nav-link" href="#">Contact</a>      -->
                     </nav>    
                 </div>  
             </header>
@@ -397,7 +397,8 @@
             <div class="cover">
                 <h3>PM10 prediction:</h3>
                 <p class="lead">The metro air quality for {{date_only}} at {{travelhour}} o'clock is 
-                    <b>{{binary}}</b> than street-level and is expected to become BETTER in the next 2 hours.</p>
+                    <b>{{binary}}</b> than street-level. <br> 
+                    It is expected to become <b>{{improve}}</b> in the next hour-- {{improve_disc}}.</p>
                     <div id="gauge_div" style="width: 150px; height: 150px;"></div>
                 <p class="lead">                
                     <font color={{textc}}>{{airqualdiscribe}}</font>
@@ -409,6 +410,8 @@
                 
                 <br><br>
                 
+                
+                
                 <h3>Data:</h3>
                 <table class="columns">
                     <tr>
@@ -419,7 +422,15 @@
                 
                 <br><br>
                 
-                <h3>Historical trends:</h3>
+                
+                
+                
+                
+                <button onclick="myFunction()" class="btn btn-outline-light">Historical trends</button>
+                <div id="myDIV" style="display:none;">
+                    
+                <br>
+               
                 <!-- history plot -->                
                 <table class="columns">
                     <tr>
@@ -431,8 +442,21 @@
                         <td><div id="chart_div_h" style="border: 1px solid #ccc"></div></td>
                     </tr>
                 </table>
-            </div><!-- /.container -->      
-      
+                    
+                </div>
+                
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("myDIV");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+                </script>
+                
+            </div><!-- /.container -->            
       </div>
             
             </main>
