@@ -9,15 +9,21 @@ from sqlalchemy_utils import database_exists, create_database
 import pandas as pd
 import psycopg2
 
-username = 'postgres'
-password = 'yanggnay'     # change this
-host     = 'localhost'
-port     = '5432'            # default port that postgres listens on
-db_name = 'frankl_pm10_db'
+#username = 'postgres'
+#password = 'yanggnay'     # change this
+#host     = 'localhost'
+#port     = '5432'            # default port that postgres listens on
+#db_name = 'frankl_pm10_db'
+
+username = 'aetyang'
+password = 'yanggnay'
+host = 'paris-metro-air.ck2ykifurmwj.us-east-2.rds.amazonaws.com'
+port = '5432'
+db_name  = 'frankl_pm10_db'
 
 db = create_engine( 'postgresql://{}:{}@{}:{}/{}'.format(username, password, host, port, db_name) )
 con = None
-con = psycopg2.connect(database = db_name, user = 'postgres', password = 'yanggnay', port = '5432', host = 'localhost')
+con = psycopg2.connect(database = db_name, user = username, password = password, port = port, host = host)
 
 @app.route('/input')
 def cesareans_input():
