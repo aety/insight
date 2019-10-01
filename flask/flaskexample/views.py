@@ -25,7 +25,7 @@ db = create_engine( 'postgresql://{}:{}@{}:{}/{}'.format(username, password, hos
 con = None
 con = psycopg2.connect(database = db_name, user = username, password = password, port = port, host = host)
 
-@app.route('/input')
+@app.route('/')
 def cesareans_input():
     return render_template("input.html")
 
