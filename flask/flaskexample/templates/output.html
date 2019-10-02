@@ -378,15 +378,22 @@
                 <h2>When are you riding the train?</h2>
                 <p>Enter a date in YYYY-MM-DD and HH (24) by {{lastdate}}</p>
                 <form  action="/output" method="GET">
-                    
                     <div class="form-group">
-                        <label for="birth_month">Date:</label>
-                        <input type="text" id="birth_month" name='birth_month' placeholder={{patient}}, value={{patient}}>
-                        <label for="hour_input">Hour:</label>
-                        <input type="text" id="hour_input" name='hour_input' placeholder={{travelhour}}, value={{travelhour}}>
-                        <br><br>
-                        <button type="submit" class="btn btn-outline-light">Predict</button>                        
-                    </div>    
+                              <label for="birth_month" class="col-2 col-form-label">Date</label>
+                              <div class="col-10">
+                                  <input class="form-control" type="date" value={{date_only}}
+                                         id="birth_month" name="birth_month">
+                              </div>
+                              
+                              <label for="hour_input" class="col-2 col-form-label">Time</label>
+                              <div class="col-10">
+                                  <input class="form-control" type="time" value={{travelhour}}:00:00 id="hour_input"
+                                         name="hour_input">
+                              </div>
+                              
+                              <br><br>
+                              <button type="submit" class="btn btn-outline-light">Predict</button>              
+                          </div>            
                 </form>
             </div>
             

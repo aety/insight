@@ -41,6 +41,7 @@ def cesareans_output():
     #pull 'birth_month' from input field and store it
     patient = request.args.get('birth_month')
     travelhour = request.args.get('hour_input')
+    travelhour = travelhour[0:2]
     time0 = datetime.strptime(patient+' '+travelhour,'%Y-%m-%d %H') # date + hour    
     time01 = time0 + timedelta(hours=1)
     
