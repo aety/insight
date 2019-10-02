@@ -25,9 +25,16 @@ db = create_engine( 'postgresql://{}:{}@{}:{}/{}'.format(username, password, hos
 con = None
 con = psycopg2.connect(database = db_name, user = username, password = password, port = port, host = host)
 
+query_last = "SELECT MAX(ds) FROM frankl_pm10_table"
+query_results_last=pd.read_sql_query(query_last,con)
+lastdate = query_results_last.iloc[-1]
+lastdate = lastdate['max'] - timedelta(days=1)
+lastdate = str(lastdate)
+lastdate = lastdate[0:10]
+    
 @app.route('/')
-def cesareans_input():
-    return render_template("input.html")
+def cesareans_input():    
+    return render_template("input.html",lastdate=lastdate)
 
 @app.route('/output')
 def cesareans_output():
@@ -78,6 +85,7 @@ def cesareans_output():
     binary_next = air_qual_next < air_qual
     improve = 'WORSE'
     improve_disc = 'leave now'
+    
     if binary_next:
         improve = 'BETTER'
         improve_disc = 'leave later if you can'
@@ -85,4 +93,5 @@ def cesareans_output():
                            travelhour = travelhour,patient=patient,date_only = temp,
                           air_qual=air_qual,hourlabel=hourlabel,hourlabelind=hourlabelind,
                           airqualdiscribe=airqualdiscribe,textc=textc,
-                          year=year,month=month,day=day,hour=hour,binary=binary,improve=improve,improve_disc=improve_disc) ### here are the output variables
+                          year=year,month=month,day=day,hour=hour,binary=binary,improve=improve,improve_disc=improve_disc,
+                          lastdate=lastdate) ### here are the output variables
